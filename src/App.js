@@ -13,12 +13,25 @@ function App() {
   const [appointments, setAppointment] = useState([]);
 
 
-  const addContact = (newObjArray) => {
-    setContact(oldStateArray => [...oldStateArray, newObjArray])
+  const addContact = (name, phone, email) => {
+    setContact([...contacts,
+      {
+        name: name,
+        phone: phone,
+        email: email,
+      }
+    ])
   };
 
-  const addAppointment = (newObjArray) => {
-    setAppointment(oldStateArray => [...oldStateArray, newObjArray])
+  const addAppointment = (title, contact, date, time) => {
+    setAppointment([ ...appointments,
+      {
+        title: title,
+        contact: contact,
+        date: date,
+        time: time,
+      }
+    ])
   };
 
 

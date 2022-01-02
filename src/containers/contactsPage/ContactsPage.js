@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ContactForm } from '../../../src/components/contactForm/ContactForm'
 import { TileList } from '../../../src/components/tileList/TileList'
 
-export const ContactsPage = ({ contacts, addContacts }) => {
+export const ContactsPage = ({ contacts, addContact }) => {
   /*
   Define state variables for 
   contact info and duplicate check
@@ -16,15 +16,8 @@ export const ContactsPage = ({ contacts, addContacts }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
-    const value = e.target.value;
-    const contactArray = [contactName, contactNumber, contactEmail]
     if (!duplicateName) {
-      addContacts(contactArray)
-      setDuplicateName(false);
+      addContact(contactName, contactNumber, contactEmail)
       setName('');
       setNumber('');
       setEmail('');
@@ -37,7 +30,7 @@ export const ContactsPage = ({ contacts, addContacts }) => {
   useEffect(() => {
     const nameIsDuplicate = () => {
       const found = contacts.find((contact) => contact.name === contactName);
-      if (found != undefined) {
+      if (found !== undefined) {
         return true;
       }
       return false;
@@ -57,8 +50,8 @@ export const ContactsPage = ({ contacts, addContacts }) => {
         <ContactForm 
         name={contactName}
         setName={setName}
-        number={contactNumber} 
-        setNumber={setNumber}
+        phone={contactNumber} 
+        setPhone={setNumber}
         email={contactEmail} 
         setEmail={setEmail}
         handleSubmit={handleSubmit}
@@ -68,6 +61,7 @@ export const ContactsPage = ({ contacts, addContacts }) => {
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList tiles={contacts} />
       </section>
     </div>
   );

@@ -37,9 +37,9 @@ export const AppointmentForm = ({
       </label>
       <label>
         <ContactPicker
-        name='Contacts'
+        name='Contact'
         value={contact}
-        type='text'
+        contacts={getContactNames()}
         onChange={(e) => setContact(e.target.value)}
         required
         placeholder='Appointment With'
